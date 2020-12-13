@@ -1,28 +1,20 @@
 package mastermind;
 
 import mastermind.models.Board;
-import utils.Console;
+import mastermind.views.View;
 
 public class Mastermind { 
 
 	private Board board; 
+	private View view;
 
-	private void play() { 
-		do { 
-			this.board = new Board();
-			this.board.play();
-			this.board.showResult();			
-		} while(this.isResumed()); 
-	} 
-
-	private boolean isResumed() { 
-		String answer;
-		Console console = new Console(); 
-		do { 
-			console.out("RESUME? (y/n): ");
-			answer = console.inString(); 
-		} while (!answer.equals("y") && !answer.equals("n")); 
-		return answer.equals("y");
+	public Mastermind() {
+		this.board = new Board();
+		this.view = new View(board);
+	}
+	
+	private void play() {
+		view.interact();
 	} 
 
 	public static void main(String[] args) {
