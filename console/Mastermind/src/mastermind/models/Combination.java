@@ -19,7 +19,14 @@ public abstract class Combination {
 	
 	public abstract void set();	
 	
-	public abstract void show();	
+	public void show() {
+		String list = "";
+		for (Color color: this.colors)
+		{
+			list += color.getKeyword();
+		}
+		this.console.out(list);
+	}
 	
 	protected boolean hasColorDuplicate() {
 		for (int i=0; i < this.colors.size(); i++) {

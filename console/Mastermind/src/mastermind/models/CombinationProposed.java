@@ -13,12 +13,10 @@ public class CombinationProposed  extends Combination {
             String characters = this.console.inString();
 
             if (characters.length() != Combination.NUMBER_COLORS) {
-    			this.console.out("WRONG_LENGTH");
                 error = Error.WRONG_LENGTH;
             } else {
                 for (int i = 0; i < characters.length(); i++) {
                 	if (this.hasColorIncorrect(characters.charAt(i))){
-            			this.console.out("WRONG_CHARACTERS");
                         error = Error.WRONG_CHARACTERS;
                     } else {
                     	Color color = Color.getColor(characters.charAt(i));
@@ -26,7 +24,6 @@ public class CombinationProposed  extends Combination {
                     }
                 }
             	if (this.hasColorDuplicate()){
-        			this.console.out("DUPLICATED");
             		error = Error.DUPLICATED;
             	}       		
             }
@@ -37,13 +34,4 @@ public class CombinationProposed  extends Combination {
             }
         } while (!error.isNull());
 	}
-
-	public void show() {
-		String list = "";
-		for (Color color: this.colors)
-		{
-			list += color.getKeyword();
-		}
-		this.console.out(list);
-	}	
 }

@@ -4,7 +4,7 @@ import utils.Console;
 
 public class Board {
 
-	private static final int NUMBER_MAXIMUN_ATTEMPTS = 11;
+	private static final int NUMBER_MAXIMUN_ATTEMPTS = 10;
 	
 	private Console console;
 	private boolean win;
@@ -17,8 +17,8 @@ public class Board {
 		win = false;
 		combinationSecret = new CombinationSecret();
 		console = new Console();
-		attempts = new Attempt[NUMBER_MAXIMUN_ATTEMPTS];
-		for (int i=0; i<=NUMBER_MAXIMUN_ATTEMPTS-1; i++) {
+		attempts = new Attempt[NUMBER_MAXIMUN_ATTEMPTS-1];
+		for (int i=0; i<=NUMBER_MAXIMUN_ATTEMPTS; i++) {
 			attempts[i] = new Attempt(combinationSecret);
 		}
 	}
@@ -28,12 +28,12 @@ public class Board {
 			this.attempts[this.currentAttempt].setCombinationProposed();
 			win = this.attempts[this.currentAttempt].isSecret();
 			this.console.out(currentAttempt + " Attempt(s):\n");
-			this.combinationSecret.show();
+			this.combinationSecret.showSecret();
 			for(int i=0; i<=currentAttempt; i++) {
 				this.attempts[i].show();
 			}
 			currentAttempt++;
-		} while (currentAttempt < NUMBER_MAXIMUN_ATTEMPTS && !win);	
+		} while (currentAttempt <= NUMBER_MAXIMUN_ATTEMPTS && !win);	
 	}
 	
 	public void showResult() {
@@ -42,7 +42,7 @@ public class Board {
 		} else {
 			console.out("you've lost!!! :-(\n");
 			console.out("Combination secret = ");
-			combinationSecret.showSecret();
+			combinationSecret.show();
 		}				
 	}
 }

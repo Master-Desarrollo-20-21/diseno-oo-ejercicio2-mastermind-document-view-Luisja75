@@ -29,17 +29,8 @@ public class CombinationSecret extends Combination {
         Collections.shuffle(this.colors);	
     }
 		
-	public void show() {
-		this.console.out("XXXX\n");
-	}
-
 	public void showSecret() {
-		String list = "";
-		for (Color color: this.colors)
-		{
-			list += color.getKeyword();
-		}
-		this.console.out(list);
+		this.console.out("XXXX\n");
 	}
 	
 	public int getNumberBlacks(CombinationProposed combinationProposed) {
