@@ -4,18 +4,18 @@ import mastermind.types.Color;
 import mastermind.types.Error;
 import utils.Console;
 
-class ErrorView {
+public class ErrorView {
     private static final String[] MESSAGES = {
             "Repeated colors",
             "Wrong colors, they must be: " + Color.getListKeyword(),
             "Wrong proposed combination length"};
     private Error error;
 
-    ErrorView(Error error) {
+    public ErrorView(Error error) {
         this.error = error;
     }
 
-    void show() {
+    public void show() {
         if (!this.error.isNull()) {
             Console.getInstance().writeln(ErrorView.MESSAGES[this.error.ordinal()]);
         }

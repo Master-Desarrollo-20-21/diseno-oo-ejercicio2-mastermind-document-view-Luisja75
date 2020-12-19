@@ -1,6 +1,6 @@
 package mastermind.views;
 
-enum Message {
+public enum Message {
 	ATTEMPTS("#NumAttempt Attempt(s):"),
 	SECRET("*"),
 	RESUME("RESUME"),

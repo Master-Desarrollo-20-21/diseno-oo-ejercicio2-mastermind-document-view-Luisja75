@@ -1,9 +1,11 @@
-package mastermind.views;
+package mastermind.views.console;
 
 import mastermind.models.Combination;
 import mastermind.models.CombinationProposed;
 import mastermind.types.Color;
 import mastermind.types.Error;
+import mastermind.views.ErrorView;
+import mastermind.views.Message;
 import utils.Console;
 
 public class CombinationProposedView {

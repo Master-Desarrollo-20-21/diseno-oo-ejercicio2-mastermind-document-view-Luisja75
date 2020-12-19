@@ -1,5 +1,6 @@
-package mastermind.views;
+package mastermind.views.console;
 
+import mastermind.views.Message;
 import utils.Console;
 
 public class StartView {

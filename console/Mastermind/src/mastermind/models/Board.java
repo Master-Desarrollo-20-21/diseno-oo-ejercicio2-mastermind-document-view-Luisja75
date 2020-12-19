@@ -13,7 +13,7 @@ public class Board {
 		this.reset();
 	}
 	
-	private void reset(){
+	public void reset(){
 		currentAttempt = 0;
 		win = false;
 		combinationSecret = new CombinationSecret();

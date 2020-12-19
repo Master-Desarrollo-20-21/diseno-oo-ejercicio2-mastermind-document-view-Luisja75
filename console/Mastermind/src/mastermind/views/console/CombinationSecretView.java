@@ -1,8 +1,9 @@
-package mastermind.views;
+package mastermind.views.console;
 
 import mastermind.models.Combination;
 import mastermind.models.CombinationSecret;
 import mastermind.types.Color;
+import mastermind.views.Message;
 import utils.Console;
 
 public class CombinationSecretView {

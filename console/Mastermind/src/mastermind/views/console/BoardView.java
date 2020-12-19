@@ -1,8 +1,10 @@
-package mastermind.views;
+package mastermind.views.console;
 
 import mastermind.models.Attempt;
 import mastermind.models.Board;
 import mastermind.models.CombinationProposed;
+import mastermind.views.Message;
+import mastermind.views.WithBoardView;
 import utils.Console;
 
 public class BoardView extends WithBoardView {

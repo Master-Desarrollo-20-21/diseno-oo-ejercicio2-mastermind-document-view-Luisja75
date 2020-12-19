@@ -3,21 +3,17 @@ package mastermind;
 import mastermind.models.Board;
 import mastermind.views.View;
 
-public class Mastermind { 
+public abstract class Mastermind { 
 
-	private Board board; 
 	private View view;
 
 	public Mastermind() {
-		this.board = new Board();
-		this.view = new View(board);
+		this.view = this.createView(new Board());
 	}
 	
-	private void play() {
+	protected abstract View createView(Board board);
+	
+	protected void play() {
 		view.interact();
-	} 
-
-	public static void main(String[] args) {
-		new Mastermind().play(); 
 	} 
 }

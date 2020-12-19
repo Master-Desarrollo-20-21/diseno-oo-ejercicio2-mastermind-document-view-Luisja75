@@ -2,28 +2,31 @@ package mastermind.views;
 
 import mastermind.models.Board;
 
-public class View {
-
-	private StartView startView;
-	private BoardView boardView;
-	private ResumeView resumeView;
+public abstract class View {
 
 	public View(Board board) {
-		this.startView = new StartView();
-		this.boardView = new BoardView(board);
-		this.resumeView = new ResumeView(board);
 	}
 	
 	public void interact() {
-		do { 
-			this.startView.interact();
-			this.boardView.show();
+		do {
+			this.start();
+			this.showBoard();
 			boolean notFinished;
 			do {
-				notFinished = this.boardView.interact();
-				this.boardView.show();
+				notFinished = this.interactBoard();
+				this.showBoard();
 			} while (notFinished);
-			this.resumeView.showResult();					
-		} while(this.resumeView.isResumed());
+			this.showResult();					
+		} while(this.isResumed());
 	}
+	
+    protected abstract void start();
+
+    protected abstract boolean interactBoard();
+    
+    protected abstract void showBoard();
+
+    protected abstract void showResult();
+    
+    protected abstract boolean isResumed();
 }
