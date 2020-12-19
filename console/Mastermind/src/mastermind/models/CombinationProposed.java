@@ -3,6 +3,7 @@ package mastermind.models;
 import mastermind.types.Color;
 
 public class CombinationProposed extends Combination {
+	
 	private int numberWhites;
 	private int numberBlacks;
 	

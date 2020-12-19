@@ -23,7 +23,7 @@ public class BoardView extends WithBoardView {
 	public void show() {
 		Console.getInstance().writeln(Message.ATTEMPTS.getMessage().replace("#NumAttempt",  "" + this.board.getCurrentAttempt()));
 		new CombinationSecretView(this.board.getCombinationSecret()).showSecret();
-		for(int i=0; i<=this.board.getCurrentAttempt()-1; i++) {
+		for (int i=0; i<=this.board.getCurrentAttempt()-1; i++) {
 			Attempt attempt = this.board.getAttempts()[i];
 			new CombinationProposedView(attempt.getCombinationProposed()).show();
 	        Console.getInstance().writeln(Message.RESULT.getMessage().replace("#blacks", "" + attempt.getNumBlacks())
