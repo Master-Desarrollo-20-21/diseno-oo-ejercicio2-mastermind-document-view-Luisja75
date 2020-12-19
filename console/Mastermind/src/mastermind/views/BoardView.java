@@ -5,13 +5,12 @@ import mastermind.models.Board;
 import mastermind.models.CombinationProposed;
 import utils.Console;
 
-public class BoardView {
-	private Board board;
+public class BoardView extends WithBoardView {
 	private Console console;
 	
 	public BoardView(Board board) {
+		super(board);
 		this.console = new Console();
-		this.board = board;
 	}
 
 	public boolean interact() {

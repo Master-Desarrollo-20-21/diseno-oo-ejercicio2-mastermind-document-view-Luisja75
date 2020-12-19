@@ -3,13 +3,12 @@ package mastermind.views;
 import mastermind.models.Board;
 import utils.Console;
 
-public class ResumeView {
+public class ResumeView extends WithBoardView {
 	private Console console;
-	private Board board;
 	
 	public ResumeView(Board board) {
+		super(board);
 		this.console = new Console();
-		this.board = board; 
 	}
 
 	public boolean isResumed() { 
