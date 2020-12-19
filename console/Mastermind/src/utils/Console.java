@@ -3,202 +3,87 @@ package utils;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class Console
-{
-	///////////////////////////////////////////////// Metodos publicos
-	public String inString ()
-	{
-		String entrada = null;
-		try 
-		{
-			entrada = b.readLine();
-		}
-		catch (Exception e) 
-		{		
-			this.salir();		
-		}
-		return entrada;
-	}	
-	
-	public int inInt ()
-	{
-		int entrada = 0;
-		try
-		{
-			entrada = Integer.parseInt(this.inString());
-		}
-		catch (Exception e)
-		{	
-			this.salir();
-		}
-		return entrada;		
+public class Console {
+
+	private static Console console = new Console();
+
+	public static Console getInstance() {
+		return console;
 	}
-	
-	public float inFloat ()
-	{
-		float entrada = 0;
-		try
-		{
-			entrada = Float.parseFloat(this.inString());
+
+	private BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+	public String readString(String title) {
+		String input = null;
+		this.write(title);
+		try {
+			input = this.bufferedReader.readLine();
+		} catch (Exception ex) {
 		}
-		catch (Exception e)
-		{	
-			this.salir();
-		}
-		return entrada;		
-	}	
-	
-	public double inDouble ()
-	{
-		double entrada = 0.0;
-		try
-		{
-			entrada = Double.parseDouble(this.inString());
-		}
-		catch (Exception e)
-		{	
-			this.salir();
-		}
-		return entrada;		
+		return input;
 	}
-	
-	public long inLong ()
-	{
-		long entrada = 0;
-		try
-		{
-			entrada = Long.parseLong(this.inString());
-		}
-		catch (Exception e)
-		{	
-			this.salir();
-		}
-		return entrada;		
+
+	public String readString() {
+		return this.readString("");
 	}
-	
-	public byte inByte ()
-	{
-		byte entrada = 0;
-		try
-		{
-			entrada = Byte.parseByte(this.inString());
-		}
-		catch (Exception e)
-		{	
-			this.salir();
-		}
-		return entrada;		
+
+	public int readInt(String title) {
+		int input = 0;
+		boolean ok = false;
+		do {
+			try {
+				input = Integer.parseInt(this.readString(title));
+				ok = true;
+			} catch (Exception ex) {
+				this.writeError("integer");
+			}
+			assert ok;
+		} while (!ok);
+		return input;
 	}
-	
-	public short inShort ()
-	{
-		short entrada = 0;
-		try
-		{
-			entrada = Short.parseShort(this.inString());
-		}
-		catch (Exception e)
-		{
-			this.salir();
-		}
-		return entrada;		
-	}	
-		
-	public char inChar ()
-	{
-		char caracter = ' ';
-		String entrada = this.inString();
-		if (entrada.length() > 1)
-		{
-			this.salir();
-		}
-		else		
-			caracter = entrada.charAt(0);
-		return caracter;		
+
+	public char readChar(String title) {
+		char charValue = ' ';
+		boolean ok = false;
+		do {
+			String input = this.readString(title);
+			if (input.length() != 1) {
+				this.writeError("character");
+			} else {
+				charValue = input.charAt(0);
+				ok = true;
+			}
+			assert ok;
+		} while (!ok);
+		return charValue;
 	}
-	
-	public boolean inBoolean ()
-	{
-		boolean entradaLogica = true;
-		String entrada = this.inString();
-		if (entrada.equalsIgnoreCase("true") || entrada.equalsIgnoreCase("false"))
-			entradaLogica = Boolean.valueOf(entrada).booleanValue();		
-		else
-		{	
-			this.salir();
-		}
-		return entradaLogica;		
-	}
-	
-	public void out (String salida)
-	{
-		System.out.print(salida);
-	}	
-	
-	public void out (int salida)
-	{
-		System.out.print(salida);
-	}	
-	
-	public void out (float salida)
-	{
-		System.out.print(salida);
-	}	
-	
-	public void out (double salida)
-	{
-		System.out.print(salida);
-	}	
-	
-	public void out (long salida)
-	{
-		System.out.print(salida);
-	}	
-	
-	public void out (byte salida)
-	{
-		System.out.print(salida);
-	}	
-	
-	public void out (Short salida)
-	{
-		System.out.print(salida);
-	}	
-	
-	public void out (char salida)
-	{
-		System.out.print(salida);
-	}	
-	
-	public void out (boolean salida)
-	{
-		System.out.print(salida);
-	}		
-	
-	
-	///////////////////////////////////////////////// Implementación
-	private void salir ()
-	{
-		System.out.println("ERROR de entrada/salida");
-		System.exit(0);
-	}
-	
-	private static BufferedReader b = new BufferedReader(new InputStreamReader(System.in));
-	
-	public static void main (String args[])
-	{
-		Console gestor = new Console();
-		
-		System.out.println("ENTERO");
-		gestor.out(gestor.inInt());
+
+	public void writeln() {
 		System.out.println();
-		System.out.println("CARACTER");
-		gestor.out(gestor.inChar());
-		System.out.println();
-		System.out.println("REAL");
-		gestor.out(gestor.inFloat());
-		System.out.println();
-		System.out.println("BOOLEAN");
-		gestor.out(gestor.inBoolean());
 	}
+
+	public void write(String string) {
+		System.out.print(string);
+	}
+
+	public void write(int integer) {
+		System.out.print(integer);
+	}
+
+	public void writeln(String string) {
+		System.out.println(string);
+	}
+
+	public void writeln(int integer) {
+		System.out.println(integer);
+	}
+
+	public void write(char character) {
+		System.out.print(character);
+	}
+
+	public void writeError(String format) {
+		System.out.println("FORMAT ERROR! " + "Enter a " + format + " formatted value.");
+	}
+
 }

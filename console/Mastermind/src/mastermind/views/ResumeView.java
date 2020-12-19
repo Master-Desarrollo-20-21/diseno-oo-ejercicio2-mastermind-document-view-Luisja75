@@ -2,30 +2,23 @@ package mastermind.views;
 
 import mastermind.models.Board;
 import utils.Console;
+import utils.YesNoDialog;
 
 public class ResumeView extends WithBoardView {
-	private Console console;
-	
 	public ResumeView(Board board) {
 		super(board);
-		this.console = new Console();
 	}
 
-	public boolean isResumed() { 
-		String answer;
-		do { 
-			this.console.out("RESUME? (y/n): ");
-			answer = this.console.inString(); 
-		} while (!answer.equals("y") && !answer.equals("n")); 
-		return answer.equals("y");
+	public boolean isResumed() {
+        return new YesNoDialog(Message.RESUME.getMessage()).read();
 	}
 	
 	public void showResult() {
 		if (this.board.isWin()) {
-			this.console.out("You've won!!! :-)\n");
+			Console.getInstance().writeln(Message.WINNER.getMessage());
 		} else {
-			this.console.out("you've lost!!! :-(\n");
-			this.console.out("Combination secret = ");
+			Console.getInstance().writeln(Message.LOOSER.getMessage());
+			Console.getInstance().write(Message.SECRET_COMBINATION.getMessage());
 			new CombinationSecretView(this.board.getCombinationSecret()).show();
 		}
 	}

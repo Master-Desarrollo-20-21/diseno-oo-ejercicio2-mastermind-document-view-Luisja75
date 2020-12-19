@@ -8,19 +8,18 @@ import utils.Console;
 
 public class CombinationProposedView {
 	private CombinationProposed combinationProposed;
-	private Console console;
 	
 	public CombinationProposedView(CombinationProposed combinationProposed) {
 		this.combinationProposed = combinationProposed;
-		this.console = new Console();
 	}
 	
 	public CombinationProposed read() {
         Error error;        
         do {
             error = Error.NULL;
-			this.console.out("\nPropose a combination: ");
-            String characters = this.console.inString();
+            Console.getInstance().writeln("");
+            Console.getInstance().write(Message.PROPOSED_COMBINATION.getMessage());
+            String characters = Console.getInstance().readString();
 
             if (characters.length() != Combination.NUMBER_COLORS) {
                 error = Error.WRONG_LENGTH;
@@ -53,7 +52,7 @@ public class CombinationProposedView {
 		{
 			list += color.getKeyword();
 		}
-		this.console.out(list);
+		Console.getInstance().write(list);
 	}
 	
 	private boolean hasColorDuplicate() {

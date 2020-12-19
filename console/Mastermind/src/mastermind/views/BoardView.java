@@ -6,11 +6,9 @@ import mastermind.models.CombinationProposed;
 import utils.Console;
 
 public class BoardView extends WithBoardView {
-	private Console console;
 	
 	public BoardView(Board board) {
 		super(board);
-		this.console = new Console();
 	}
 
 	public boolean interact() {
@@ -21,12 +19,13 @@ public class BoardView extends WithBoardView {
 	}
 
 	public void show() {
-		this.console.out(this.board.getCurrentAttempt() + " Attempt(s):\n");
+		Console.getInstance().writeln(Message.ATTEMPTS.getMessage().replace("#NumAttempt",  "" + this.board.getCurrentAttempt()));
 		new CombinationSecretView(this.board.getCombinationSecret()).showSecret();
 		for(int i=0; i<=this.board.getCurrentAttempt()-1; i++) {
 			Attempt attempt = this.board.getAttempts()[i];
 			new CombinationProposedView(attempt.getCombinationProposed()).show();
-			console.out(" --> " + attempt.getNumBlacks() + " blacks " +  attempt.getNumWhites() + " whites\n");
+	        Console.getInstance().writeln(Message.RESULT.getMessage().replace("#blacks", "" + attempt.getNumBlacks())
+	                .replace("#whites", "" + attempt.getNumWhites()));			
 		}
 	}
 }

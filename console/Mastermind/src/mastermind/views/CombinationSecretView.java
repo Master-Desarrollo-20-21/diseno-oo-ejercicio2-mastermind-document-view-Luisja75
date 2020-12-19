@@ -1,16 +1,15 @@
 package mastermind.views;
 
+import mastermind.models.Combination;
 import mastermind.models.CombinationSecret;
 import mastermind.types.Color;
 import utils.Console;
 
 public class CombinationSecretView {
 	private CombinationSecret combinationSecret;
-	private Console console;
 	
 	public CombinationSecretView(CombinationSecret combinationSecret) {
 		this.combinationSecret = combinationSecret;
-		this.console = new Console();
 	}
 	
 	public void show() {
@@ -19,10 +18,14 @@ public class CombinationSecretView {
 		{
 			list += color.getKeyword();
 		}
-		this.console.out(list+"\n");
+		Console.getInstance().writeln(list);
 	}
 	
 	public void showSecret() {
-		this.console.out("XXXX\n");
+		for (int i=0; i<Combination.NUMBER_COLORS; i++)
+		{
+			Console.getInstance().write(Message.SECRET.getMessage());
+		}
+		Console.getInstance().writeln("");
 	}
 }
